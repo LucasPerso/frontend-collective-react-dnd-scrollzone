@@ -124,8 +124,8 @@ export function createScrollingComponent(WrappedComponent) {
       // have to attach the listeners to the body
       window.document.body.addEventListener('touchmove', this.handleEvent);
 
-      const { dragDropManager } = this.props;
-      this.clearMonitorSubscription = dragDropManager
+      const { dragdropmanager } = this.props;
+      this.clearMonitorSubscription = dragdropmanager
         .getMonitor()
         .subscribeToStateChange(() => this.handleMonitorChange());
     }
@@ -148,8 +148,8 @@ export function createScrollingComponent(WrappedComponent) {
     }
 
     handleMonitorChange() {
-      const { dragDropManager } = this.props;
-      const isDragging = dragDropManager.getMonitor().isDragging();
+      const { dragdropmanager } = this.props;
+      const isDragging = dragdropmanager.getMonitor().isDragging();
 
       if (!this.dragging && isDragging) {
         this.dragging = true;
@@ -263,7 +263,7 @@ export default function createScrollingComponentWithConsumer(WrappedComponent) {
       {({ dragDropManager }) => (
         dragDropManager === undefined
           ? null
-          : <ScrollingComponent {...props} dragDropManager={dragDropManager} />
+          : <ScrollingComponent {...props} dragdropmanager={dragDropManager} />
       )}
     </DragDropContextConsumer>
   );
